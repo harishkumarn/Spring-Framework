@@ -6,17 +6,20 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
-  
-  <bean id="harish" class="SpringFramework.impl.EmployeeImpl">
+
+
+  <!-- <context:component-scan base-package="SpringFramework"/> -->
+
+   <bean id="harish" class="SpringFramework.impl.EmployeeImpl">
     <property name="age" value="25"/>
     <property name="name" value="Harish Kumar"/>
     <property name="role" value="MTS"/>
     <property name="skill" ref="dev"/>
-  </bean>
+  </bean> 
 
-  <bean id="dev" class="SpringFramework.impl.SkillImpl">
+   <bean id="dev" class="SpringFramework.impl.SkillImpl">
     <constructor-arg>
-        <value type="SpringFramework.interfaces.Skill.Type">DEV</value>
+        <value type="SpringFramework.interfaces.Type">DEV</value>
     </constructor-arg>
     <property name="skills">
         <list>
@@ -27,6 +30,6 @@
             <value>Scala</value>
         </list>
     </property>
-  </bean>
+  </bean> -->
   
 </beans>

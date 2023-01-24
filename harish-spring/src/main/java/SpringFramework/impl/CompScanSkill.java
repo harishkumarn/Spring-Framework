@@ -1,17 +1,26 @@
 package SpringFramework.impl;
 
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
+
 import SpringFramework.interfaces.Skill;
+
 import SpringFramework.interfaces.Type;
 
-public class SkillImpl implements Skill {
+@PropertySource("classpath:propsource.properties")
+@Component("harishCompScanSkill")
+public class CompScanSkill implements Skill{
 
-    Type type;
+    @Value("${skill.type}")
+    Type type ;
+
+    @Value("#{${skill.skills}}")
     List<String> skills;
 
-    public SkillImpl(Type type){
-        this.type = type;
-    }
 
     @Override
     public Type getType(){
