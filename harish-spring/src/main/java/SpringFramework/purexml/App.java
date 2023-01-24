@@ -1,4 +1,4 @@
-package SpringFramework.annotationbased;
+package SpringFramework.purexml;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.ApplicationContext;
