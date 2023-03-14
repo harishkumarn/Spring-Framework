@@ -11,7 +11,7 @@ import SpringFramework.impl.AnnotateEmployee;
 
 @Aspect
 @Component
-public class BeforeAspect {
+public class AspectTestClass {
     @Before("execution(public String getName())")
     public void doThis(){
         System.out.println("Before getName");
