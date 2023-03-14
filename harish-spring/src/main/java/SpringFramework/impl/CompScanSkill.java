@@ -10,6 +10,7 @@ import SpringFramework.interfaces.Skill;
 
 import SpringFramework.interfaces.Type;
 
+
 @PropertySource("classpath:propsource.properties")
 @Component("harishCompScanSkill")
 public class CompScanSkill implements Skill{

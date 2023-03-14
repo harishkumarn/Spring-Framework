@@ -10,9 +10,13 @@ import org.springframework.context.annotation.Bean;
 import SpringFramework.interfaces.Employee;
 import SpringFramework.interfaces.Type;
 import SpringFramework.interfaces.Skill;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.stereotype.Component;
+
 
 @Configuration
-@ComponentScan("SpringFramework.*")
+@EnableAspectJAutoProxy
+@ComponentScan("SpringFramework.impl")
 public class AnnotateEmployee {
     
 

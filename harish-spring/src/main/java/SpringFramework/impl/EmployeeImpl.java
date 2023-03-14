@@ -2,6 +2,9 @@ package SpringFramework.impl;
 
 import SpringFramework.interfaces.Employee;
 import SpringFramework.interfaces.Skill;
+import org.springframework.stereotype.Component;
+
+@Component
 public class EmployeeImpl implements Employee{
 
     String name;
