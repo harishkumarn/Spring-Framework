@@ -9,7 +9,7 @@ public class App {
     public static void main(String[] args){
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 
-        Employee emp = context.getBean(Employee.class,"harishCompoScan");
+        Employee emp = context.getBean("harishCompoScan",Employee.class);
 
         System.out.println("Name : "  + emp.getName());
         System.out.println("Role : " + emp.getRole());

@@ -11,7 +11,7 @@ public class App {
     public static void main(String[] args){
         ApplicationContext context = new AnnotationConfigApplicationContext(AnnotateEmployee.class);
 
-        Employee emp = context.getBean("HK",Employee.class);
+        Employee emp = context.getBean("harishCompoScan",Employee.class);
 
         System.out.println("Name : "  + emp.getName());
         System.out.println("Role : " + emp.getRole());

@@ -2,9 +2,10 @@ package SpringFramework.impl;
 
 import SpringFramework.interfaces.Employee;
 import SpringFramework.interfaces.Skill;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
 public class EmployeeImpl implements Employee{
 
     String name;
@@ -47,6 +48,7 @@ public class EmployeeImpl implements Employee{
         this.age = age;
     }
 
+    @Autowired
     @Override
     public void setSkill(Skill skill){
         this.skill = skill;

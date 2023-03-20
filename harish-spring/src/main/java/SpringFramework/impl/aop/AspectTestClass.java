@@ -2,6 +2,7 @@ package SpringFramework.impl.aop;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 import SpringFramework.interfaces.Employee;
 
@@ -12,9 +13,18 @@ import SpringFramework.impl.AnnotateEmployee;
 @Aspect
 @Component
 public class AspectTestClass {
-    @Before("execution(public String getName())")
+
+    @Pointcut("execution(public String getName())")
+    public void pc1(){
+
+    }
+
+    @Pointcut("execution(public int getAge())")
+    public void pc2(){}
+
+    @Before("pc1() || pc2()")
     public void doThis(){
-        System.out.println("Before getName");
+        System.out.println("Before pc");
     }
 
     public static void main(String[] args){
@@ -23,6 +33,8 @@ public class AspectTestClass {
         Employee emp = context.getBean("harishCompoScan",Employee.class);
 
         System.out.println(emp.getName());
+
+        System.out.println(emp.getAge());
         
     }
 }

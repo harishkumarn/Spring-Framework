@@ -30,6 +30,5 @@
             <value>Scala</value>
         </list>
     </property>
-  </bean> -->
-  
+  </bean>  
 </beans>

@@ -57,9 +57,8 @@ public class CompScanEmployee implements Employee{
     }
 
     @Autowired
-    @Qualifier("harishCompScanSkill")
     @Override
-    public void setSkill(Skill skill){
+    public void setSkill(@Qualifier("harishCompScanSkill")  Skill skill){
         this.skill = skill;
     }
 }
