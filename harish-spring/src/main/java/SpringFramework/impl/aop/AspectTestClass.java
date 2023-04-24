@@ -1,6 +1,7 @@
 package SpringFramework.impl.aop;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -37,6 +38,11 @@ public class AspectTestClass {
         Object[] args = jp.getArgs();
         System.out.println("Printing arguments from preSet");
         Arrays.stream(args).forEach(System.out::println);
+    }
+
+    @AfterReturning(pointcut = "execution(* getAge(..))", returning =  "val")
+    public void postGet(Integer val){  
+        System.out.println("After getting " + val);
     }
 
     public static void main(String[] args){
