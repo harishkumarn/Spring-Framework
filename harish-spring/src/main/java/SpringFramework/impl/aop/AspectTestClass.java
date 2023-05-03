@@ -1,9 +1,11 @@
 package SpringFramework.impl.aop;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -32,7 +34,7 @@ public class AspectTestClass {
 
     @Before("pc1() || pc2()")
     public void doThis(){
-        System.out.println("Before pc");
+        System.out.println("Before get");
     }
 
     @Before("execution(* set*(..))")
@@ -49,12 +51,19 @@ public class AspectTestClass {
 
     @AfterThrowing(pointcut = "execution(* getAge(..))", throwing = "e")
     public void postGetThrow(Exception e){
-        System.out.println("After getting " + e);
+        System.out.println("After throwing " + e);
     }
 
     @After("execution(* getAge(..))")
     public void postGet(){
-        System.out.println("Pseudo finally block");
+        System.out.println("Pseudo finally block ( after get )");
+    }
+
+    @Around("execution(* getAge(..))")
+    public Object aroundGet(ProceedingJoinPoint jp) throws Throwable{
+        System.out.println("Around get");
+        Object obj = jp.proceed();
+        return obj;
     }
 
     public static void main(String[] args){
@@ -64,7 +73,7 @@ public class AspectTestClass {
 
 
 
-        System.out.println(emp.getName());
+      //  System.out.println(emp.getName());
 
         System.out.println(emp.getAge());
 
