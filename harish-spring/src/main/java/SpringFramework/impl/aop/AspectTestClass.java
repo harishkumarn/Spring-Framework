@@ -63,6 +63,7 @@ public class AspectTestClass {
     public Object aroundGet(ProceedingJoinPoint jp) throws Throwable{
         System.out.println("Around get");
         Object obj = jp.proceed();
+        System.out.println("Around get return");
         return obj;
     }
 

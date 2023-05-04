@@ -1,16 +1,16 @@
 
 package com.mvc.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller // Extends @Component
+@RestController
 public class HelloController {
 
-    @RequestMapping("/name")
+    @GetMapping("/name")
     public String show_hello(){
         
-        return "hello-mvc";
+        return "hello world";
     }
     
 }
