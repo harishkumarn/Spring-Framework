@@ -3,7 +3,6 @@ package com.mvc.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,24 +13,6 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 import java.util.ArrayList;
-
-class ErrorResponse {
-    private String message;
-    private int status;
-
-    public ErrorResponse(String message, int status){
-        this.message = message;
-        this.status = status;
-    }
-
-    public String getMessage(){
-        return message;
-    }
-
-    public int getStatus(){
-        return status;
-    }
-}
 
 @RestController
 public class HelloController {
@@ -60,6 +41,9 @@ public class HelloController {
 
     }
 
+
+    // other annotations
+
     @PostConstruct
     public void init(){
         names.add("harish");
@@ -73,8 +57,4 @@ public class HelloController {
         names.clear();
     }
 
-    @ExceptionHandler
-    public ResponseEntity<ErrorResponse> handleException(Exception e){
-        return new ResponseEntity<>(new ErrorResponse(e.getMessage(),400),HttpStatus.NOT_FOUND);
-    }
 }
