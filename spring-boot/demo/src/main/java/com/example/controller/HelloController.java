@@ -34,7 +34,7 @@ public class HelloController {
         return "Hello World!";
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/get/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.GET, value="/get/{id}")
     ResponseEntity<User> getUser(@PathVariable Integer id) throws UserException{
         try{
             return new ResponseEntity<User>(db.getUserById(id),HttpStatus.ACCEPTED);
