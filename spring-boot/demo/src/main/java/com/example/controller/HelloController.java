@@ -1,12 +1,14 @@
 package com.example.controller;
 
+import java.util.Locale;
+
 import javax.validation.Valid;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,15 +18,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.AppConfig;
+
 import com.example.database.UserDB;
 import com.example.database.UserException;
-import com.example.database.UserException;
 import com.pojo.User;
+import com.example.GlobalUtilities;
 
 @RestController
 public class HelloController {
    
+    @Autowired
+    GlobalUtilities util;
+
     @Autowired
     @Qualifier("userDb")
     UserDB db ;
@@ -50,7 +55,10 @@ public class HelloController {
         db.createUser(user);
         return new ResponseEntity<JSONObject>(new JSONObject()
                                         .put("status","success")
-                                        .put("message","user created successfully !!")
+                                        .put("message",util.getLocalizedError("response.create.success"))
                                     ,HttpStatus.CREATED);
     }
+
+    
+
 }

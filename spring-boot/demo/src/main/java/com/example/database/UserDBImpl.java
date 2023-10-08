@@ -3,7 +3,14 @@ import com.pojo.User;
 
 import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import com.example.GlobalUtilities;
+
 public class UserDBImpl implements UserDB {
+
+    @Autowired
+    GlobalUtilities util;
+
 
     static HashMap<Integer, User> db = new HashMap<Integer, User>(){{
         put(1,new User(1,"Harish Kumar",25));
@@ -15,13 +22,14 @@ public class UserDBImpl implements UserDB {
 
     @Override
     public User getUserById(Integer id) throws UserException{
-        if(!db.containsKey(id)) throw new UserException("No User found");
+        if(!db.containsKey(id)) throw new UserException(util.getLocalizedError("response.error.id.absent"));
         return db.get(id);
     }
 
     @Override
     public void createUser(User user) throws UserException{
-        if(db.containsKey(user.getId())) throw new UserException("User with ID present already !!");
+        if(db.containsKey(user.getId())) throw new UserException(util.getLocalizedError("response.error.id.present"));
         db.put(user.getId(),user);
     }
+
 }

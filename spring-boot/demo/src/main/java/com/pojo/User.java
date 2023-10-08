@@ -1,20 +1,18 @@
 package com.pojo;
 
 import javax.validation.constraints.Size;
-
-import com.fasterxml.jackson.annotation.JsonCreator;
-
 import javax.validation.constraints.Min;
 
 public class User {
     
-     @Min(value=1, message="id can't be lesser than 1")
+
+     @Min(value=1, message="response.error.id")
      Integer id;
      
-     @Size(min = 2,  message="name has to be atleast 2 letters" )
+     @Size(min = 2,  message="response.error.name")
      String name;
 
-     @Min(value=1, message="age can't be lesser than 1")
+     @Min(value=1, message="response.error.age")
      Integer age;
 
     
