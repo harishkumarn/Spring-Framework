@@ -1,19 +1,24 @@
 package com.example.handler;
 
-import org.json.JSONObject;
+import org.json.JSONArray;
 public class ErrorCapsule {
     String message;
-    JSONObject details;
+    JSONArray details;
 
     public ErrorCapsule(String mes){
+        this(mes,new JSONArray());
+    }
+
+    public ErrorCapsule(String mes, JSONArray jarr){
         this.message = mes;
+        this.details = jarr;
     }
 
     public String getMessage(){
         return message;
     }
 
-    public JSONObject getDetails(){
+    public JSONArray getDetails(){
         return details;
     }
 }
