@@ -1,8 +1,12 @@
 package com.pojo;
 
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonFilter;
+
 import javax.validation.constraints.Min;
 
+@JsonFilter("GetAPIFilter")
 public class User {
     
 

@@ -19,6 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.database.UserDB;
 import com.example.database.UserException;
+import com.fasterxml.jackson.databind.ser.FilterProvider;
+import org.springframework.http.converter.json.MappingJacksonValue;
+
+import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
+import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
 import com.pojo.User;
 import com.example.GlobalUtilities;
 
@@ -57,6 +62,23 @@ public class HelloController {
                                     ,HttpStatus.CREATED);
     }
 
-    
+    @RequestMapping(value="/user/{id}", params = "version=1", method=RequestMethod.GET)
+    ResponseEntity<User> getUserV1(@PathVariable Integer id) throws UserException{
+        return new ResponseEntity<User>(db.getUserById(id),HttpStatus.OK);
+        
+    }
+
+    @RequestMapping(value="/user/{id}", headers = "X-API-VERSION=2", method=RequestMethod.GET)
+    MappingJacksonValue getUserV2(@PathVariable Integer id) throws UserException{
+
+        MappingJacksonValue mappingJacksonValue = new MappingJacksonValue(db.getUserById(id));
+
+        SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter.filterOutAllExcept("age");
+        FilterProvider fp = new SimpleFilterProvider().addFilter("GetAPIFilter", filter);
+        
+        mappingJacksonValue.setFilters(fp);
+
+        return mappingJacksonValue;
+    }
 
 }
